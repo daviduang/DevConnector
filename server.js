@@ -4,7 +4,7 @@ const connectDB = require('./config/db');
 const app = express();
 
 /* Connect database */
-connectDB();
+connectDB(); 
 
 /* Handle GET request */
 app.get('/', (req, res) => res.send('API Running'));
