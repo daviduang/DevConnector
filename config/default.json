@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://David:David@mern-project-cluster.qyiii.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://David:David@mern-project-cluster.qyiii.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtSecret": "mySecret"
 }
