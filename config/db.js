@@ -6,9 +6,12 @@ const db = config.get('mongoURI');
 const connectDB = async() => {
     try {
         await mongoose.connect(db, {
+
+            //set deprecated params here
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true
+            useCreateIndex: true,
+            useFindAndModify: false,
         });
 
         console.log('DB connected...')

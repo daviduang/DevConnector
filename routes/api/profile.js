@@ -80,7 +80,7 @@ router.post('/', [auth, [
         if (linkedin) profileFields.socialmedia.linkedin = linkedin;
 
         //console.log(profileFields.skills);
-        res.send('Hello');
+        //res.send('Hello');
 
         try {
 
@@ -88,15 +88,19 @@ router.post('/', [auth, [
 
             // If the user has profile, then UPDATE profile
             if (profile) {
-                profile = await Profile.fineOneAndUpdate(
+                profile = await Profile.findOneAndUpdate(
                     { user: req.user.id },
                     { $set: profileFields },
                     { new: true }
                 );
+
+                return res.json(profile);
             }
 
             // Otherwise CREATE a new profile
             profile = new Profile(profileFields);
+
+            // save the changes
             await profile.save();
             res.json(profile);
 
