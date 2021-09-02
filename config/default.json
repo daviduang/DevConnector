@@ -1,4 +1,6 @@
 {
     "mongoURI": "mongodb+srv://David:David@mern-project-cluster.qyiii.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    "jwtSecret": "mySecret"
+    "jwtSecret": "mySecret",
+    "githubClientId": "a82dafea91ee462e801c",
+    "githubSecret": "52343c25fa2c859c3e0947a6565a430c781c2b76"
 }
