@@ -61,8 +61,7 @@ router.get('/user/:user_id', async (req, res) => {
 router.post('/', [auth, [
     check('status', 'Status is required').not().isEmpty(),
     check('skills', 'Skills is required').not().isEmpty()
-    ]], 
-    async (req, res) => {
+    ]], async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -103,9 +102,6 @@ router.post('/', [auth, [
         if (twitter) profileFields.socialmedia.twitter = twitter;
         if (instagram) profileFields.socialmedia.instagram = instagram;
         if (linkedin) profileFields.socialmedia.linkedin = linkedin;
-
-        //console.log(profileFields.skills);
-        //res.send('Hello');
 
         try {
 
@@ -243,7 +239,7 @@ router.put('/education', [auth, [
     check('studyfield', 'Field of Study is required').not().isEmpty(), 
     check('from', 'From date is required').not().isEmpty(),
 
-]], async (req, res) => {
+    ]], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
