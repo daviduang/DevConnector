@@ -2,8 +2,8 @@ import './App.css';
 import React, { fragment } from 'react';
 
 const App = () => 
-    <div className="App">
-
-    </div>
+    <fragment>
+      
+    </fragment>
 
 export default App;
