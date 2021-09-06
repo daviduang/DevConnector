@@ -1,0 +1,105 @@
+<!-- Add exprience page -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/8fe9dc5df9.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.min.css" />
+    <title>Welcome!</title>
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <nav class="navbar bg-dark">
+      <h1>
+        <a href="dashboard.html"> <i class="fas fa-code"></i> DevConnector </a>
+      </h1>
+      <ul>
+        <li><a href="profiles.html">Developers</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li>
+          <a href="dashboard.html">
+            <i class="fas fa-user"></i>
+            <span class="hide-sm">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="login.html">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="hide-sm">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <section class="container">
+      <h1 class="large text-primary">Add your experiece</h1>
+      <p class="lead">
+        <i class="fas fa-user"></i>
+        Add any position you have in the past
+      </p>
+      <small> * = required fields</small>
+      <form class="form">
+        <!-- Job title filing port -->
+        <div class="form-group">
+          <input type="text" placeholder="* Job Title" name="title" required />
+        </div>
+
+        <!-- Company filing port -->
+        <div class="form-group">
+          <input type="text" placeholder="Company" name="company" />
+        </div>
+
+        <!-- Location filing port -->
+        <div class="form-group">
+          <input type="text" placeholder="Location" name="location" />
+        </div>
+
+        <!-- From date filing port -->
+        <div class="form-group">
+          <h4>From Date</h4>
+          <input type="date" name="from" />
+        </div>
+
+        <!-- To date filing port -->
+        <div class="form-group">
+          <h4>To Date</h4>
+          <input type="date" name="to" />
+        </div>
+
+        <!-- Is current job checkbox-->
+        <div class="form-group">
+          <p>
+            <input type="checkbox" name="current" />
+            Current Job
+          </p>
+        </div>
+
+        <!-- Job description -->
+        <div class="form-group">
+          <input
+            type="textarea"
+            placeholder="Job Description"
+            name="description"
+            cols="30"
+            rows="5"
+          />
+          <small class="form-text"> Tell us about your job </small>
+        </div>
+
+        <!-- Submit button -->
+        <input type="submit" class="btn btn-primary my-1" />
+
+        <!-- Go Back button -->
+        <a href="dashboard.html" class="btn my-1">Go Back</a>
+      </form>
+    </section>
+  </body>
+</html>
