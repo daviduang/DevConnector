@@ -1,4 +1,4 @@
-// presentation setting for mobile devices
+// presentation setting for mobile devices, triggered when width is less than 700px
 @media (max-width: 700px) {
   .hide-sm {
     display: none;
@@ -53,7 +53,7 @@
     }
   }
 
-  // Profile grid
+  // View-profile grid
   .profile-grid {
     grid-template-areas:
       "top"
@@ -63,13 +63,14 @@
       "github";
   }
 
-  // Profile skills presented in columns
+  // Display profile skills in columns
   .profile-about {
-    .skiils {
+    .skills {
       flex-direction: column;
     }
   }
 
+  // Change Post
   .post {
     grid-template-columns: 1fr;
 

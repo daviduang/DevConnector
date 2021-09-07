@@ -1,7 +1,6 @@
 @import "config";
 @import "utilities";
 @import "form";
-@import "mobile";
 
 * {
   box-sizing: border-box;
@@ -194,3 +193,6 @@ img {
     width: 150px;
   }
 }
+
+// Have to put in the bottom, otherwise the new value can not cover the original one
+@import "mobile";
