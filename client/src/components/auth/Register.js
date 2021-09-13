@@ -18,14 +18,36 @@ export const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   // When onSubmit action triggered
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     // Check if passwords match
     if (password !== confirmedPassword) {
       console.log("Passwords do not match");
     } else {
-      console.log(formData);
+      console.log("SUCCESS!");
+      /*      
+        const newUser = {
+        name,
+        email,
+        password,
+      };
+
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        const body = JSON.stringify(newUser);
+
+        const res = await axios.post("/api/users", body, config);
+
+        console.log(res.data);
+      } catch (error) {
+        console.error(error.res.data);
+      }*/
     }
   };
 
