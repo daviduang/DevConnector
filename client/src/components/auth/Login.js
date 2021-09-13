@@ -9,7 +9,7 @@ export const Login = () => {
   });
 
   // Destructure the formData (Now can use name instead of formData.name)
-  const { name, email, password, confirmedPassword } = formData;
+  const { email, password } = formData;
 
   // When any field changes(Typing), make a copy of formData(...formData), then set key:value (name:value)
   const onChange = (e) =>
