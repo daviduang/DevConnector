@@ -3,7 +3,7 @@ import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Landing } from "./components/layout/Landing";
-import { Login } from "./components/auth/Login";
+import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Alert from "./components/layout/Alert";
 
@@ -13,8 +13,9 @@ import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 
-// If there is a token in the local storage,
-// then set the auth header with token to the req
+/**
+ * Set auth token to req header if there is one
+ */
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
