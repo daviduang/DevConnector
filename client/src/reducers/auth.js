@@ -1,4 +1,9 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL } from "../actions/types";
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+} from "../actions/types";
 
 /**
  * State: an object tracking user info
@@ -16,6 +21,14 @@ export default function (state = initialState, action) {
   // Destruct action, get type, payload
   const { type, payload } = action;
   switch (type) {
+    // If log in succeed
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload,
+      };
     // If registeration succeed
     case REGISTER_SUCCESS:
       // Set the token to local storage
@@ -26,8 +39,9 @@ export default function (state = initialState, action) {
         isAuthenticated: true,
         loading: false,
       };
-    // If registration failed
+    // If registration failed or auth failed
     case REGISTER_FAIL:
+    case AUTH_ERROR:
       // Remove token from local storage if there is one
       localStorage.removeItem("token");
       return {

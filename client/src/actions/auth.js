@@ -1,6 +1,34 @@
 import axios from "axios";
-import { REGISTER_SUCCESS, REGISTER_FAIL } from "./types";
 import { setAlert } from "./alert";
+import setAuthToken from "../utils/setAuthToken";
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+} from "./types";
+
+// Load user
+export const loadUser = () => async (dispatch) => {
+  // If there is a token in the local storage,
+  // then set the auth header with token to the req
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    const res = await axios.get("/api/auth");
+
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
 
 // Destruct the params, set headers
 export const register =
