@@ -2,9 +2,10 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 import PropTypes from "prop-types";
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   // Construct formData
   const [formData, setFormData] = useState({
     name: "",
@@ -26,9 +27,10 @@ const Register = ({ setAlert }) => {
 
     // Check if passwords match
     if (password !== confirmedPassword) {
+      // Trigger setAlert action, passing down: alert msg, alert type, timemout(in ms)
       setAlert("Passwords do not match", "danger", 3000);
     } else {
-      console.log("SUCCESS!");
+      register({ name, email, password });
       /*      
         const newUser = {
         name,
@@ -69,7 +71,7 @@ const Register = ({ setAlert }) => {
             name="name"
             value={name}
             onChange={(e) => onChange(e)}
-            required
+            //required
           />
         </div>
         <div className="form-group">
@@ -79,7 +81,7 @@ const Register = ({ setAlert }) => {
             name="email"
             value={email}
             onChange={(e) => onChange(e)}
-            required
+            //required
           />
           <small className="form-text"> This site supports Gravatar</small>
         </div>
@@ -87,22 +89,22 @@ const Register = ({ setAlert }) => {
           <input
             type="password"
             placeholder="Password"
-            minLength="6"
+            //minLength="6"
             name="password"
             value={password}
             onChange={(e) => onChange(e)}
-            required
+            //required
           />
         </div>
         <div className="form-group">
           <input
             type="password"
             placeholder="Confirm Password"
-            minLength="6"
+            //minLength="6"
             name="confirmedPassword"
             value={confirmedPassword}
             onChange={(e) => onChange(e)}
-            required
+            //required
           />
         </div>
         <input
@@ -121,8 +123,10 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
+  // snippet: ptfr
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
-// connect ( STATE, ACTION ) ()
-export default connect(null, { setAlert })(Register);
+// connect ( STATE, {ACTIONs} ) ()
+export default connect(null, { setAlert, register })(Register);
