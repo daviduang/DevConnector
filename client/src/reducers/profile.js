@@ -1,4 +1,4 @@
-import { GET_PROFILE, PROFILE_ERROR } from "../actions/types";
+import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE } from "../actions/types";
 
 const initialState = {
   // Individual profile page:
@@ -29,6 +29,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         error: payload,
+        loading: false,
+      };
+    // Reset profile when loggout
+    case CLEAR_PROFILE:
+      return {
+        ...state,
+        profile: null,
+        repo: [],
         loading: false,
       };
 

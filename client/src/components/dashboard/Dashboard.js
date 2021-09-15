@@ -1,13 +1,49 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
+import Spinner from "../layout/Spinner";
+import { Link } from "react-router-dom";
 
-const Dashboard = ({ getCurrentProfile, auth, profile }) => {
+const Dashboard = ({
+  getCurrentProfile,
+  auth: { user },
+  profile: { profile, loading },
+}) => {
   useEffect(() => {
     getCurrentProfile();
   }, []); // []: only run once
-  return <div>Dashboard</div>;
+
+  // Display spinner while the profile is fetching
+  return loading && profile === null ? (
+    <Spinner />
+  ) : (
+    <Fragment>
+      <h1 class="large text-primary">Dashboard</h1>
+      <p class="lead">
+        <i class="fas fa-user"></i>
+        Welcome {user && user.name}
+      </p>
+
+      {profile !== null ? (
+        <Fragment> Has </Fragment>
+      ) : (
+        <Fragment>
+          <p>You have not set up profile, please add some</p>
+          <Link to="create-profile" className="btn btn-primary my-1">
+            Create Profile
+          </Link>
+        </Fragment>
+      )}
+
+      <div class="my-2">
+        <button class="btn btn-danger">
+          <i class="fas fa-user-minus"></i>
+          Delete My Account
+        </button>
+      </div>
+    </Fragment>
+  );
 };
 
 const mapStateToProps = (state) => ({
