@@ -19,9 +19,9 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment>
-      <h1 class="large text-primary">Dashboard</h1>
-      <p class="lead">
-        <i class="fas fa-user"></i>
+      <h1 className="large text-primary">Dashboard</h1>
+      <p className="lead">
+        <i className="fas fa-user"></i>
         Welcome {user && user.name}
       </p>
 
@@ -36,9 +36,9 @@ const Dashboard = ({
         </Fragment>
       )}
 
-      <div class="my-2">
-        <button class="btn btn-danger">
-          <i class="fas fa-user-minus"></i>
+      <div className="my-2">
+        <button className="btn btn-danger">
+          <i className="fas fa-user-minus"></i>
           Delete My Account
         </button>
       </div>
