@@ -22,7 +22,7 @@ export const getCurrentProfile = () => async (dispatch) => {
   }
 };
 
-// Create/Update Profile
+// Create/Update Profile, edit == false: create
 export const createProfile =
   (formData, history, edit = false) =>
   async (dispatch) => {
