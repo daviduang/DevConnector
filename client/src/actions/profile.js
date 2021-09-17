@@ -3,9 +3,11 @@ import { setAlert } from "./alert";
 import {
   DELETE_ACCOUNT,
   GET_PROFILE,
+  GET_PROFILES,
   CLEAR_PROFILE,
   PROFILE_ERROR,
   UPDATE_PROFILE,
+  GET_REPOS,
 } from "./types";
 
 // Get current user's profile
@@ -15,6 +17,56 @@ export const getCurrentProfile = () => async (dispatch) => {
 
     dispatch({
       type: GET_PROFILE,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+// Get all profiles
+export const getProfiles = () => async (dispatch) => {
+  // Flushing up the loaded profile
+  dispatch({
+    type: CLEAR_PROFILE,
+  });
+
+  try {
+    const res = await axios.get("/api/profile");
+
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+// Get profile by user id
+export const getProfileById = (userId) => async (dispatch) => {
+  // Flushing up the loaded profile
+  dispatch({
+    type: CLEAR_PROFILE,
+  });
+
+  try {
+    const res = await axios.get(`/api/profile/user/${userId}`);
+
+    dispatch({
+      type: GET_PROFILES,
       payload: res.data,
     });
   } catch (error) {
@@ -221,5 +273,25 @@ export const deleteAccount = () => async (dispatch) => {
         },
       });
     }
+  }
+};
+
+// Get github repos
+export const getGithubRepos = (githubUsername) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/profile/github/${githubUsername}`);
+
+    dispatch({
+      type: GET_REPOS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
   }
 };
