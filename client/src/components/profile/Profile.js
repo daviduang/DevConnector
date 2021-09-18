@@ -8,6 +8,8 @@ import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
+import ProfileGithub from "./ProfileGithub";
+
 /**
  * Entry file of Profile page
  */
@@ -80,6 +82,10 @@ const Profile = ({
                 <h4> No education </h4>
               )}
             </div>
+
+            {profile.githubUsername && (
+              <ProfileGithub username={profile.githubUsername} />
+            )}
           </div>
         </Fragment>
       )}

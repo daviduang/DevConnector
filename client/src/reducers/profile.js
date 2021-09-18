@@ -48,6 +48,7 @@ export default function (state = initialState, action) {
         ...state,
         error: payload,
         loading: false,
+        profile: null,
       };
     // Reset profile when loggout
     case CLEAR_PROFILE:
