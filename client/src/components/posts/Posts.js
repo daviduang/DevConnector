@@ -3,13 +3,35 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getPosts } from "../../actions/post";
 import Spinner from "../layout/Spinner";
+import PostItem from "./PostItem";
 
+/**
+ * Entry of Post page
+ */
 const Posts = ({ getPosts, post: { posts, loading } }) => {
+  // useEffect called at the beginning of this method,
+  // getPost fetch data and assgined it to state,
+  // then get post from state
   useEffect(() => {
     getPosts();
-  }, [getPosts]);
+  }, [getPosts]); // only run once
 
-  return <div></div>;
+  return loading ? (
+    <Spinner />
+  ) : (
+    <Fragment>
+      <h1 className="large text-primary">Posts</h1>
+      <p className="lead">
+        <i className="fas fa-user">Welcome to Community</i>
+      </p>
+      {/* POST Form */}
+      <div className="posts">
+        {posts.map((post) => (
+          <PostItem key={post._id} post={post} />
+        ))}
+      </div>
+    </Fragment>
+  );
 };
 
 Posts.propTypes = {
