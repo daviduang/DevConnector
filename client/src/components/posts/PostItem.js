@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
+import { addLike, removeLike } from "../../actions/post";
 
 /**
  * Present a single post item
@@ -10,6 +11,8 @@ import { connect } from "react-redux";
 const PostItem = ({
   auth,
   post: { _id, text, name, avatar, user, likes, comments, date },
+  addLike,
+  removeLike,
 }) => (
   <div className="posts">
     <div className="post bg-white my-1 p-1">
@@ -27,21 +30,26 @@ const PostItem = ({
           Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
         </p>
 
-        <button className="btn">
+        {/* Like button */}
+        <button onClick={(e) => addLike(_id)} className="btn">
           <i className="fas fa-thumbs-up"></i>
           <span> {likes.length > 0 && <span>{likes.length}</span>}</span>
         </button>
-        <button className="btn">
+
+        {/* Unlike button */}
+        <button onClick={(e) => removeLike(_id)} className="btn">
           <i className="fas fa-thumbs-down"></i>
         </button>
+
+        {/* Discuession button */}
         <Link to={`/post/${_id}`} className="btn btn-primary">
           Discussion{" "}
           {comments.length > 0 && (
-            <span class="comment-count">{comments.length}</span>
+            <span className="comment-count">{comments.length}</span>
           )}
         </Link>
         {!auth.loading && user === auth.user._id && (
-          <button type="button" class="btn btn-danger">
+          <button type="button" className="btn btn-danger">
             <i className="fas fa-times"></i>
           </button>
         )}
@@ -59,4 +67,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, {})(PostItem);
+export default connect(mapStateToProps, { addLike, removeLike })(PostItem);

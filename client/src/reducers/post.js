@@ -1,5 +1,5 @@
-import { defaults } from "request";
-import { GET_POSTS, POST_ERROR } from "../actions/types";
+import { defaults, post } from "request";
+import { GET_POSTS, POST_ERROR, UPDATE_LIKES } from "../actions/types";
 
 const initialState = {
   posts: [],
@@ -18,10 +18,23 @@ export default (state = initialState, action) => {
         posts: payload,
         loading: false,
       };
+
     case POST_ERROR:
       return {
         ...state,
-        posts: payload,
+        error: payload,
+        loading: false,
+      };
+
+    case UPDATE_LIKES:
+      return {
+        ...state,
+        // Map through the whole post lists,
+        // if there is one have the same id with the payload,
+        // then update the likes list within it
+        posts: state.posts.map((post) =>
+          post._id === payload.postId ? { ...post, likes: payload.likes } : post
+        ),
         loading: false,
       };
     default:
