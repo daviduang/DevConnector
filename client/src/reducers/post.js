@@ -1,6 +1,7 @@
 import { defaults, post } from "request";
 import {
   GET_POSTS,
+  GET_POST,
   POST_ERROR,
   UPDATE_LIKES,
   DELETE_POST,
@@ -22,6 +23,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         posts: payload,
+        loading: false,
+      };
+
+    case GET_POST:
+      return {
+        ...state,
+        post: payload,
         loading: false,
       };
 

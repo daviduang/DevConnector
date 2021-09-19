@@ -15,6 +15,7 @@ import AddEducation from "./components/profile-form/AddEducation";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
+import Post from "./components/posts/Post";
 
 //Redux (reducers)
 import { Provider } from "react-redux";
@@ -38,10 +39,17 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
+          {/* Navigation bar */}
           <Navbar />
+          {/* Home route */}
           <Route exact path="/" component={Landing}></Route>
+
+          {/* Web contents */}
           <section className="container">
+            {/* Alert item on top of container */}
             <Alert />
+
+            {/* Define other routes inside switch */}
             <Switch>
               <Route exact path="/register" component={Register}></Route>
               <Route exact path="/login" component={Login}></Route>
@@ -76,6 +84,11 @@ const App = () => {
                 exact
                 path="/posts"
                 component={Posts}
+              ></PrivateRoute>
+              <PrivateRoute
+                exact
+                path="/post/:id"
+                component={Post}
               ></PrivateRoute>
             </Switch>
           </section>

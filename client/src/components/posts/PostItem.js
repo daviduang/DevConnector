@@ -19,6 +19,7 @@ const PostItem = ({
   addLike,
   deletePost,
   removeLike,
+  showActions, // true if shows all button items
 }) => (
   <div className="posts">
     <div className="post bg-white my-1 p-1">
@@ -36,38 +37,44 @@ const PostItem = ({
           Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
         </p>
 
-        {/* Like button */}
-        <button onClick={(e) => addLike(_id)} className="btn">
-          <i className="fas fa-thumbs-up"></i>
-          <span> {likes.length > 0 && <span>{likes.length}</span>}</span>
-        </button>
-
-        {/* Unlike button */}
-        <button onClick={(e) => removeLike(_id)} className="btn">
-          <i className="fas fa-thumbs-down"></i>
-        </button>
-
-        {/* Discuession button */}
-        <Link to={`/post/${_id}`} className="btn btn-primary">
-          Discussion{" "}
-          {comments.length > 0 && (
-            <span className="comment-count">{comments.length}</span>
-          )}
-        </Link>
-        {/* The delete button only shows to the logged in user's post */}
-        {!auth.loading && user === auth.user._id && (
-          <button
-            onClick={(e) => deletePost(_id)}
-            type="button"
-            className="btn btn-danger"
-          >
-            <i className="fas fa-times"></i>
-          </button>
+        {showActions && (
+          <Fragment>
+            {/* Like button */}
+            <button onClick={(e) => addLike(_id)} className="btn">
+              <i className="fas fa-thumbs-up"></i>
+              <span> {likes.length > 0 && <span>{likes.length}</span>}</span>
+            </button>
+            {/* Unlike button */}
+            <button onClick={(e) => removeLike(_id)} className="btn">
+              <i className="fas fa-thumbs-down"></i>
+            </button>
+            {/* Discuession button */}
+            <Link to={`/post/${_id}`} className="btn btn-primary">
+              Discussion{" "}
+              {comments.length > 0 && (
+                <span className="comment-count">{comments.length}</span>
+              )}
+            </Link>
+            {/* The delete button only shows to the logged in user's post */}
+            {!auth.loading && user === auth.user._id && (
+              <button
+                onClick={(e) => deletePost(_id)}
+                type="button"
+                className="btn btn-danger"
+              >
+                <i className="fas fa-times"></i>
+              </button>
+            )}
+          </Fragment>
         )}
       </div>
     </div>
   </div>
 );
+
+PostItem.defaultProps = {
+  showActions: true,
+};
 
 PostItem.propTypes = {
   auth: PropTypes.object.isRequired,

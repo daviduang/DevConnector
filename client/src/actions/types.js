@@ -28,7 +28,8 @@ export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
 
 // Post
 export const GET_POSTS = "GET_POSTS";
+export const GET_POST = "GET_POST";
 export const POST_ERROR = "POST_ERROR";
 export const UPDATE_LIKES = "UPDATE_LIKES";
-export const DELETE_POST = "DELETE_POTS";
-export const CREATE_POST = "CREATE_POTS";
+export const DELETE_POST = "DELETE_POST";
+export const CREATE_POST = "CREATE_POST";
