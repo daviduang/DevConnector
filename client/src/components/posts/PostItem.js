@@ -3,7 +3,12 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
-import { addLike, removeLike, deletePost } from "../../actions/post";
+import {
+  addLike,
+  removeLike,
+  deletePost,
+  createPost,
+} from "../../actions/post";
 
 /**
  * Present a single post item
@@ -18,7 +23,7 @@ const PostItem = ({
   <div className="posts">
     <div className="post bg-white my-1 p-1">
       <div>
-        <Link to="/profile">
+        <Link to={`/profile/${user}`}>
           <img className="round-img my-1" src={avatar} alt="gravatarImg" />
           <h4>{name}</h4>
         </Link>
@@ -70,12 +75,16 @@ PostItem.propTypes = {
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
+  createPost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { addLike, removeLike, deletePost })(
-  PostItem
-);
+export default connect(mapStateToProps, {
+  addLike,
+  removeLike,
+  deletePost,
+  createPost,
+})(PostItem);
