@@ -233,10 +233,12 @@ router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
       return res.status(401).json({ msg: "User unauthorized" });
     }
 
-    // get the index of removed the user
+    // Get the index of the comments:
+    // 1. map through the whole list of comments object, take out comment id
+    // 2. get the index of removed comment id
     const removeIndex = post.comments
-      .map((comment) => comment.user.toString())
-      .indexOf(req.user.id);
+      .map((comment) => comment._id.toString())
+      .indexOf(req.params.comment_id);
 
     // from remove index, remove 1 element
     post.comments.splice(removeIndex, 1);

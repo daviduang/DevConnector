@@ -87,6 +87,7 @@ export default (state = initialState, action) => {
         },
         loading: false,
       };
+
     default:
       return state;
   }

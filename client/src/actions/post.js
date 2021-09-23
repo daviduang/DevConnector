@@ -184,7 +184,7 @@ export const removeComment = (postId, commentId) => async (dispatch) => {
 
     dispatch({
       type: REMOVE_COMMENT,
-      payload: res.data,
+      payload: commentId,
     });
 
     dispatch(setAlert("Comment removed!", "success"));
