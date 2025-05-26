@@ -1,4 +1,3 @@
-//import { defaults, post } from "request";
 import {
   GET_POSTS,
   GET_POST,
